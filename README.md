@@ -1,9 +1,9 @@
 # Kv-Viewer
-This is an example application for examining DenoKv data in a TreeView.   
-This app uses a simple SSE-RPC service to fetch all DenoKv-db-rows for    
-viewing in a DOM Treeview. 
-The SSE-RPC api must be installed in the target DB app.
-This example defaults to a Deno Deploy test app with a DenoKv.
+This is an example application for examining DenoKv data in a TreeView.     
+This app uses a simple SSE-RPC service to fetch all DenoKv-db-rows.    
+KvKeys are deconstructed for viewing in a DOM Treeview.    
+The **SSE-RPC** api must be implemented in the donor DB app.    
+This example defaults to a Deno Deploy test app with a DenoKv.    
 
 <br/>
 
@@ -15,7 +15,7 @@ You can enter any URL that has implemented the minimal SSE-RPC api.
 ## SSE-RPC
 This simple SSE-RPC service is easy to use.    
   - A DB-Donner simply needs to implement the SSE-API    
-  - Any client that implements the required client (see ./dbClient.js), can access any Donners DB
+  - Any client that implements the required client (see ./dbClient.js), can access any Donors DB
   - By design, any donner-db can support multiple clients.     
 
 SEE: https://github.com/nhrones/KvRPC/blob/main/README.md
