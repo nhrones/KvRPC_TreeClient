@@ -14,12 +14,10 @@ You may change this to any other DenoKv file by modifying the **DBPath**
 constant found in the _./dbService/context.ts_ file.
 
 ### Usage:
-
-Make a local copy of this repo.    
-In the project root, enter:
+Open
 ```
-deno run -A --unstable server.ts
+https://nhrones.github.io/KvRPC_TreeClient/
 ```
-This server will automatically open the app at localhost:9099 in your default browser.   
+Click the **GET** button.   
 
 ![kv-tree](kv-tv.png)
