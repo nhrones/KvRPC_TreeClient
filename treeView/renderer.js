@@ -80,10 +80,10 @@ function createNodeElement(node) {
 
    const lineEl = el.children[0];
 
-   // uncomment to start tree collapsed
-   //if (node.parent !== null) {
-      //lineEl.classList.add(Classes.HIDDEN);
-   //}
+   // comment to start tree collapsed
+   if (node.parent !== null) {
+      lineEl.classList.add(Classes.HIDDEN);
+   }
 
    lineEl.style = 'margin-left: ' + node.depth * 18 + 'px;';
 
