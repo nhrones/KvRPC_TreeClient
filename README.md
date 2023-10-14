@@ -5,9 +5,15 @@ viewing in a DOM Treeview.
 The SSE-RPC api must be installed in the target DB app.
 This example defaults to a Deno Deploy test app with a DenoKv.
 
+<br/>
+
+![kv-tree](kv-tv.png)
+
+## Note:
 You can enter any URL that has implemented the minimal SSE-RPC api.   
+
 ## SSE-RPC
-The simple SSE-RPC service is easy to use.    
+This simple SSE-RPC service is easy to use.    
   - A DB-Donner simply needs to implement the SSE-API    
   - Any client that implements the required client (see ./dbClient.js), can access any Donners DB
   - By design, any donner-db can support multiple clients.     
@@ -31,7 +37,3 @@ Next, click the **Get Records** button.
 Now, click the root node \<kv-prefix:\> to expand the tree
 
 ![Alt text](exspand.png)
-
-<br/>
-
-![kv-tree](kv-tv.png)
