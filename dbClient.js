@@ -16,11 +16,11 @@ LOCAL_DEV = true
 // https://kv-rpc.deno.dev/
 
 export const CollectionName = 'users'
-export const DBServiceURL = (LOCAL_DEV === false) ? "https://kv-rpc.deno.dev/" : "http://localhost:9099/"
-export const RegistrationURL = DBServiceURL + "RpcRegistration"
+
+//export const RegistrationURL = DBServiceURL + "RpcRegistration"
 
 let nextMsgID = 0;
-
+let DBServiceURL = ''
 const transactions = new Map();
 
 /**
@@ -28,25 +28,22 @@ const transactions = new Map();
  */
 export class DbClient {
 
-   nextMsgID = 0
    querySet = []
 
-   transactions
-
    // DB ctor
-   constructor() {
-      this.transactions = new Map()
+   constructor(serviceURL) {
+      //fix url ending
+      DBServiceURL = (serviceURL.endsWith('/'))
+      ? serviceURL
+      : serviceURL += '/';
    }
-
-   /** 
-    * initialize our EventSource and fetch some data    
-    */
+   /** initialize our EventSource and fetch some data */
    async init() {
       return new Promise((resolve, reject) => {
          let connectAttemps = 0
          console.log("CONNECTING");
-
-         const eventSource = new EventSource(RegistrationURL);
+         
+         const eventSource = new EventSource(DBServiceURL + "RpcRegistration");
 
          eventSource.addEventListener("open", () => {
             console.log("CONNECTED");
@@ -86,11 +83,11 @@ See: readme.md.`)
          */
          eventSource.addEventListener("message", (evt) => {
             const parsed = JSON.parse(evt.data);
-            const { txID, error, result } = parsed;         // unpack
-            if (!transactions.has(txID)) return             // check        
-            const transaction = transactions.get(txID)      // fetch
-            transactions.delete(txID)                       // clean up
-            if (transaction) transaction(error, result)     // execute
+            const { txID, error, result } = parsed;               // unpack
+            if (!transactions.has(txID)) return              // check        
+            const transaction = transactions.get(txID)       // fetch
+            transactions.delete(txID)                        // clean up
+            if (transaction) transaction(error, result)           // execute
          })
       })
    }

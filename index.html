@@ -2,11 +2,22 @@
 <html>
 <head>  
    <link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;,">
-   <link rel="stylesheet" href="./treeview.css" />
+   <link rel="stylesheet" href="./treeView/treeview.css" />
+   <link rel="stylesheet" href="./styles.css" />
    <script type=module src="./main.js"></script>
 	<title>treeview demo</title>
 </head>
 <body>
-   <div class="root"></div>
+   <div class="header">
+      <button id="getbtn">Get Records</button>
+      <label for="url">from:</label>
+      <input type="text" id="url" value="https://kv-rpc.deno.dev/"></input>
+      <!-- <button id="setbtn">Set Record</button>
+      <label for="key">key:</label>
+      <input type="text" id="key" value="[ 'users', 1 ]"></input>
+      <label for="val">value:</label>
+      <input type="text" id="val" value="{ id: 1, first: 'me', 'last': 'too', 'age': 10 }"></input> -->
+   </div>
+   <div class="tree" id="tree"></div>
 </body>
 </html>
