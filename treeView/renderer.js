@@ -1,5 +1,5 @@
 
-import {Classes, collapsedTemplate, expandedTemplate } from './templates.js'
+import { Classes, collapsedTemplate, expandedTemplate } from './templates.js'
 
 /**
  * Render the tree into DOM container
@@ -9,7 +9,7 @@ import {Classes, collapsedTemplate, expandedTemplate } from './templates.js'
 export function render(tree, targetElement) {
    const containerEl = document.createElement('div');
    containerEl.className = 'elem-container';
-   
+
    traverse(tree, function (node) {
       node.el = createNodeElement(node);
       containerEl.appendChild(node.el);
@@ -69,7 +69,7 @@ function createNodeElement(node) {
       })
       const caretEl = el.querySelector('.' + Classes.CARET_ICON);
       caretEl.addEventListener('click', () => toggleNode(node));
-      node.dispose = caretEl.removeEventListener('click', () => toggleNode(node));//listen(caretEl, 'click', () => toggleNode(node));
+      node.dispose = caretEl.removeEventListener('click', () => toggleNode(node));
    } else {
       el.innerHTML = collapsedTemplate({
          key: node.key,
@@ -80,9 +80,10 @@ function createNodeElement(node) {
 
    const lineEl = el.children[0];
 
-   if (node.parent !== null) {
-      lineEl.classList.add(Classes.HIDDEN);
-   }
+   // uncomment to start tree collapsed
+   //if (node.parent !== null) {
+      //lineEl.classList.add(Classes.HIDDEN);
+   //}
 
    lineEl.style = 'margin-left: ' + node.depth * 18 + 'px;';
 
