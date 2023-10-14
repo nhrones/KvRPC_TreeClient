@@ -14,10 +14,9 @@ You may change this to any other DenoKv file by modifying the **DBPath**
 constant found in the _./dbService/context.ts_ file.
 
 ### Usage:
-Open
-```
+Open:    
 https://nhrones.github.io/KvRPC_TreeClient/
-```
+
 Click the **GET** button.   
 
 ![kv-tree](kv-tv.png)
