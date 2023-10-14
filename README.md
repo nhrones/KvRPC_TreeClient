@@ -1,22 +1,37 @@
 # Kv-Viewer
 This is an example application for examining DenoKv data in a TreeView.   
-This app uses a simple RPC service to fetch and prep all DenoKv-db-rows    
-for viewing in a DOM Treeview.  
+This app uses a simple SSE-RPC service to fetch all DenoKv-db-rows for    
+viewing in a DOM Treeview. 
+The SSE-RPC api must be installed in the target DB app.
+This example defaults to a Deno Deploy test app with a DenoKv.
+
+You can enter any URL that has implemented the minimal SSE-RPC api.   
+## SSE-RPC
+The simple SSE-RPC service is easy to use.    
+  - A DB-Donner simply needs to implement the SSE-API    
+  - Any client that implements the required client (see ./dbClient.js), can access any Donners DB
+  - By design, any donner-db can support multiple clients.     
+
+SEE: https://github.com/nhrones/KvRPC/blob/main/README.md
+
 
 ## WARNING: 
 This is an unfinished work that was testing the concept of showing multipart-keys in a tree format.  Many features are yet to be implemented.  This work has now been rolled into another db project that has the ability to use many peristence layers. 
 
 This simple client demonstrates a minimal transaction-based SSE-KV-RPC service.   
-See: _./dbService/dbtransactions.ts/_ (server-side) and _./example/dbClient.js/_ (client-side)
 
-This example supplies a test database located in _**/dbService/data/db.db**_    
-You may change this to any other DenoKv file by modifying the **DBPath**    
-constant found in the _./dbService/context.ts_ file.
+## Try It!
+First, launch the Treeview Client from Github-Pages          
+https://nhrones.github.io/KvRPC_TreeClient/    
 
-### Usage:
-Open:    
-https://nhrones.github.io/KvRPC_TreeClient/
+Next, click the **Get Records** button.    
 
-Click the **GET** button.   
+![Alt text](clickToFetch.png)    
+
+Now, click the root node \<kv-prefix:\> to expand the tree
+
+![Alt text](exspand.png)
+
+<br/>
 
 ![kv-tree](kv-tv.png)
