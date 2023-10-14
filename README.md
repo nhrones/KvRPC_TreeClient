@@ -15,7 +15,7 @@ You can enter any URL that has implemented the minimal SSE-RPC api.
 ## SSE-RPC
 This simple SSE-RPC service is easy to use.    
   - A DB-Donner simply needs to implement the SSE-API    
-  - Any client that implements the required client (see ./dbClient.js), can access any Donors DB
+  - Any client that implements the required client (see ./dbClient.js), can access any Donor-DB
   - By design, any donner-db can support multiple clients.     
 
 SEE: https://github.com/nhrones/KvRPC/blob/main/README.md
