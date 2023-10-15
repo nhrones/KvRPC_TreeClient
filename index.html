@@ -9,14 +9,19 @@
 </head>
 <body>
    <div class="header">
-      <button id="getbtn">Get Records</button>
+
+      <button id="getbtn">Get All</button>
       <label for="urls">from:</label>
       <select name="urls" id="urls" default="Deploy">
          <option value="https://kv-rpc.deno.dev/">Deploy</option>
          <option value="https://fresh-sse-db.deno.dev/">Fresh</option>
          <option value="http://localhost:9099">localhost</option>
+         <option value="">Other</option>
        </select>
-      <!-- <button id="setbtn">Set Record</button>    "https://fresh-sse-db.deno.dev/" "https://kv-rpc.deno.dev/"
+       <label for="url">url:</label>
+       <input type="text" id="url" value="https://kv-rpc.deno.dev/"></input>
+      <!-- <button id="setbtn">Set</button>
+      <button id="setbtn">Delete</button>
       <label for="key">key:</label>
       <input type="text" id="key" value="[ 'users', 1 ]"></input>
       <label for="val">value:</label>

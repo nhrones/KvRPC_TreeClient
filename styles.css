@@ -1,5 +1,5 @@
 * {
-   box-sizing: border-box;
+   box-sizing: content-box;
  }
 
 body {
@@ -12,17 +12,17 @@ body {
 }
 
 button {
-   margin-left: 20px;
-   margin-right: 10px;
+   margin-left: 8px;
+   margin-right: 8px;
    background-color: orange;
    border: none;
    border-radius: 8px;
    color: black;
-   padding: 7px 16px;
+   padding: 8px; 
    text-align: center;
    text-decoration: none;
    display: inline-block;
-   font-size: 16px;
+   font-size: 12px;
  }
 
 label {
@@ -31,16 +31,17 @@ label {
 
 input {
    margin-right: 10px;
-   background-color: black;
+   background-color: rgb(12, 1, 1);
    color:beige;
-   padding: 7px 16px;
-   font-size: 16px;
+   padding: 8px 4px 8px 4px;  /* top right bottom left*/
+   font-size: 12px;
+   width: 30%;
 }
 
 select {
    margin-right: 10px;
    background-color: black;
    color:beige;
-   padding: 7px 16px;
-   font-size: 16px;
+   padding: 8px 4px 8px 4px;  /* top right bottom left*/
+   font-size: 12px;
 }

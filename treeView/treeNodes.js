@@ -10,22 +10,17 @@ export function getTreeObj(nodes) {
    return to;
 }
 
-//await Kv.loadCache().then( () => {
-//   const raw = [...Kv.shadowCache.entries()]
-//   tree = getTreeObj(raw)
-//})
-
 /**
  * Process a multipart Key to a treeNode object 
- * with a maximum key-part-depth of 5
+ * with a maximum key-part-depth of 6
  * @param to - an object to be constructed
  * @param node - the node to be processed
  */
 function processNode(to, node) {
 
-   const k = node[0]
-   const v = node[1]
-   const length = k.length
+   const k = node[0]  // an array of keyParts
+   const v = node[1]  // any valid kvValue
+   const length = k.length // the length of the multipart key array
 
    if (length > 0) {
       to.kv[`${k[0]}`] = (to.kv[`${k[0]}`])
@@ -66,4 +61,5 @@ function processNode(to, node) {
             ? to.kv[`${k[0]}`][`${k[1]}`][`${k[2]}`][`${k[3]}`][`${k[4]}`][`${k[5]}`] 
             : (length === 6) ? v : {}
    }
+
 }
