@@ -34,7 +34,7 @@ This is an unfinished work that was used to test the concept of showing multipar
 
 This simple client demonstrates a minimal transaction-based SSE-RPC service.   
 
-## Try It!
+# Try it now!
 First, launch the Treeview Client from Github-Pages          
 https://nhrones.github.io/KvRPC_TreeClient/    
 
