@@ -6,12 +6,11 @@ import { DbClient } from './dbClient.js'
 // when the getBtn is clicked, we first clear the treeView 
 // then we fetch a fresh dataSet from the url
 document.getElementById('getbtn').addEventListener('click', () => {
-
+   const urls = document.getElementById('urls')
    // clear the tree
    const tree = document.getElementById('tree')
+   let DBServiceURL = urls.value
    tree.innerHTML = ''
-
-   const DBServiceURL = document.getElementById('url').value
    const thisDB = new DbClient(DBServiceURL)
    console.log(DBServiceURL)
 

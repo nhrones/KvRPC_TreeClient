@@ -28,7 +28,16 @@ button {
 label {
    color: orange;
 }
+
 input {
+   margin-right: 10px;
+   background-color: black;
+   color:beige;
+   padding: 7px 16px;
+   font-size: 16px;
+}
+
+select {
    margin-right: 10px;
    background-color: black;
    color:beige;

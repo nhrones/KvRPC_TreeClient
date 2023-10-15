@@ -38,6 +38,10 @@ This simple client demonstrates a minimal transaction-based SSE-RPC service.
 First, launch the Treeview Client from Github-Pages          
 https://nhrones.github.io/KvRPC_TreeClient/    
 
+Select a DB source. (note: localhost requires starting a local test server)    
+
+![Alt text](selectDB.png)
+
 Next, click the **Get Records** button.    
 
 ![Alt text](clickToFetch.png)    
