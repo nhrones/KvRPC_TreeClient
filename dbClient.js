@@ -17,8 +17,6 @@ LOCAL_DEV = true
 
 export const CollectionName = 'users'
 
-//export const RegistrationURL = DBServiceURL + "RpcRegistration"
-
 let nextMsgID = 0;
 let DBServiceURL = ''
 const transactions = new Map();
@@ -43,7 +41,7 @@ export class DbClient {
          let connectAttemps = 0
          console.log("CONNECTING");
          
-         const eventSource = new EventSource(DBServiceURL + "api/Rpc");
+         const eventSource = new EventSource(DBServiceURL + "SSERPC/Registration");
 
          eventSource.addEventListener("open", () => {
             console.log("CONNECTED");
@@ -186,7 +184,7 @@ export const Call = (procedure, params) => {
             return reject(new Error(error));
          resolve(result);
       });
-      fetch(DBServiceURL+'api/post', {
+      fetch(DBServiceURL+'SSERPC/Requests', {
          method: "POST",
          mode: 'cors',
          body: JSON.stringify({ txID, procedure, params })
