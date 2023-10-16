@@ -40,7 +40,7 @@ Select a DB source. (note: localhost requires starting a local test server)
 
 ![Alt text](selectDB.png)
 
-Next, click the **Get Records** button.    
+Next, click the **Get All** button.    
 
 ![Alt text](clickToFetch.png)    
 
