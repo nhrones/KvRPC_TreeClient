@@ -45,3 +45,6 @@ select {
    padding: 8px 4px 8px 4px;  /* top right bottom left*/
    font-size: 12px;
 }
+a {
+   color:antiquewhite;
+}
