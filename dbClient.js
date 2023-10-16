@@ -41,7 +41,7 @@ export class DbClient {
          let connectAttemps = 0
          console.log("CONNECTING");
          
-         const eventSource = new EventSource(DBServiceURL + "SSERPC/Registration");
+         const eventSource = new EventSource(DBServiceURL + "SSERPC/sseRegistration");
 
          eventSource.addEventListener("open", () => {
             console.log("CONNECTED");
@@ -184,7 +184,7 @@ export const Call = (procedure, params) => {
             return reject(new Error(error));
          resolve(result);
       });
-      fetch(DBServiceURL+'SSERPC/Requests', {
+      fetch(DBServiceURL+'SSERPC/rpcRequests', {
          method: "POST",
          mode: 'cors',
          body: JSON.stringify({ txID, procedure, params })
