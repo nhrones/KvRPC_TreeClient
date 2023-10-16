@@ -8,6 +8,7 @@ const url = document.getElementById('url')
 
 urls.addEventListener('change', () => {
    url.value = urls.value
+   tree.innerHTML = ''
 })
 
 // when the getBtn is clicked, we first clear the treeView 
