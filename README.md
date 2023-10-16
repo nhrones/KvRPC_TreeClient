@@ -45,10 +45,6 @@ Next, click the **Get All** button.
 
 ![Alt text](clickToFetch.png)    
 
-Now, click the root node \<kv-prefix:\> to expand the tree
-
-![Alt text](exspand.png)
-
 ## The example dataset:
 ```ts
    await db.set(["env", "host"], "http://localhost")
