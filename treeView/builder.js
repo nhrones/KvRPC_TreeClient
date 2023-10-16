@@ -7,7 +7,7 @@
 export function create(kvData) {
    const rootNode = createNode({
       value: kvData,
-      key: 'kv-prefix:',
+      key: 'Key-Prefix',
       type: getDataType(kvData)
    });
    createSubnode(kvData, rootNode);
@@ -21,17 +21,14 @@ export function create(kvData) {
  */
 function createNode(opt = {}) {
    let value = opt['value'] ?? null;
-   
-   if (isEmptyObject(value)) value = "{ }";
-   
+   if (isEmptyObject(value)) value = "{ }"; 
    //console.info(`createNode type: ${opt.type} value: ${value}`)
-   
    if (opt.type === 'string') value = `"${value}"`
    return {
       key: opt.key || null,
       parent: opt.parent || null,
       value: value,
-      isExpanded: opt.isExpanded || false,
+      isExpanded: opt.isExpanded || true,
       type: opt.type || null,
       children: opt.children || [],
       el: opt.el || null,
@@ -41,7 +38,7 @@ function createNode(opt = {}) {
 }
 
 /**
- * Create subnode for node (recursive)
+ * Create subnode for a node (recursive)
  * @param {object} data
  * @param {object} node
  */
@@ -55,7 +52,7 @@ function createSubnode(data, node) {
             type: getDataType(data[key]),
             parent: node,
          });
-         //ndh recursive
+         // recurse
          node.children.push(child);
          createSubnode(data[key], child);
       }

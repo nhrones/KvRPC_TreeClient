@@ -61,6 +61,7 @@ function setCaretIconRight(node) {
  */
 function createNodeElement(node) {
    const el = document.createElement('div');
+   // a leaf node?
    if (node.children.length > 0) {
       el.innerHTML = expandedTemplate({
          key: node.key,
@@ -70,19 +71,21 @@ function createNodeElement(node) {
       const caretEl = el.querySelector('.' + Classes.CARET_ICON);
       caretEl.addEventListener('click', () => toggleNode(node));
       node.dispose = caretEl.removeEventListener('click', () => toggleNode(node));
-   } else {
+   } else { // (has children -- not a leaf
       el.innerHTML = collapsedTemplate({
          key: node.key,
          value: node.value,
-         type: node.value === '{}' ? 'object' : typeof node.value
+         type: (node.value === '{}') 
+            ? 'object' 
+            : typeof node.value
       })
    }
 
    const lineEl = el.children[0];
 
-   // comment to start tree collapsed
+   // start the tree collapsed
    if (node.parent !== null) {
-      lineEl.classList.add(Classes.HIDDEN);
+      //lineEl.classList.add(Classes.HIDDEN);
    }
 
    lineEl.style = 'margin-left: ' + node.depth * 18 + 'px;';
