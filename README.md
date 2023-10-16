@@ -5,13 +5,11 @@ KvKeys are deconstructed for viewing in a DOM Treeview.
 The **SSE-RPC** api must be implemented in the donor DB app.
 
 This example defaults to a Deno **Deploy** test db donor.    
-DB-Donor url: https://kv-rpc.deno.dev/    
+DB-Donor code: https://github.com/nhrones/KvRPC    
 
 You may want to try the Deno-Fresh-Deploy impl by selecting **Fresh**.    
-DB-Donor url: https://fresh-sse-db.deno.dev/     
-
-See this Fresh api-impl at : https://github.com/nhrones/Fresh-SSE-DB    
-You'll find the required SSE-RPC code is in /routes/api/    
+DB-Donor code: https://github.com/nhrones/Fresh-SSE-DB       
+You'll find the required SSE-RPC code is in /routes/SSERPC/ folder   
 
 <br/>
 
