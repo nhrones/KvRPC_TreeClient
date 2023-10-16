@@ -5,6 +5,7 @@ import { DbClient } from './dbClient.js'
 
 const urls = document.getElementById('urls')
 const url = document.getElementById('url')
+
 urls.addEventListener('change', () => {
    url.value = urls.value
 })
