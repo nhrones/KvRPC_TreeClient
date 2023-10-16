@@ -1,20 +1,25 @@
 
-
 let tree = null
 
+/**
+ * Build a set of treeNode objects
+ * @param {*} nodes 
+ * @returns an object tree
+ */
 export function getTreeObj(nodes) {
    const to = { kv: {} }
    for (let index = 0; index < nodes.length; index++) {
       processNode(to, nodes[index])
    }
+   console.info(to)
    return to;
 }
 
 /**
  * Process a multipart Key to a treeNode object 
  * with a maximum key-part-depth of 6
- * @param to - an object to be constructed
- * @param node - the node to be processed
+ * @param to - an object to add this element to
+ * @param node - the node to be processed -- a tuple of [k,v]
  */
 function processNode(to, node) {
 
