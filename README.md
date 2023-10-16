@@ -46,6 +46,7 @@ Next, click the **Get All** button.
 ![Alt text](clickToFetch.png)    
 
 ## The example dataset:
+The included data in the example apps was built with the following Deno commands:
 ```ts
    await db.set(["env", "host"], "http://localhost")
    await db.set(["env", "port"], 9099)
