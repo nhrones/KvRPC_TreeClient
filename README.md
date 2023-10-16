@@ -1,28 +1,29 @@
-# Kv-Viewer
-This is an example application for examining DenoKv data in a TreeView.     
-This app uses a simple SSE-RPC service to fetch all DenoKv-db-rows.    
-KvKeys are deconstructed for viewing in a DOM Treeview.    
-The **SSE-RPC** api must be implemented in the donor DB app.
+# KvDb-Remote-Viewer
+This is an example application for examining remote DenoKv data in a TreeView.     
+This app uses a simple SSE-RPC service to fetch all remote-db-rows.    
+KvKeys are then deconstructed for viewing in a DOM Treeview.    
+The **SSE-RPC** api must be implemented in the remote donor app.
 
-This example defaults to a Deno **Deploy Example** test db donor.    
+This example defaults to a remote Deno **Deploy Example** test donor.    
 DB-Donor code: https://github.com/nhrones/KvRPC    
 
-You may want to try the Deno-Fresh-Deploy impl by selecting **Fresh Example**.    
+You may want to try the Deno-Fresh-Deploy implementaion by selecting the **Fresh Example**.    
 DB-Donor code: https://github.com/nhrones/Fresh-SSE-DB       
-You'll find the required SSE-RPC code is in /routes/SSERPC/ folder   
+You'll find the required SSE-RPC code in the apps ./routes/SSERPC/ folder.   
 
 <br/>
 
 ![kv-tree](kv-tv.png)
 
 ## Note:
-You can enter any URL that has implemented the minimal SSE-RPC api.   
+You can select a remote db from the _From_ dropdown.
+You may also enter any URL that has implemented the minimal SSE-RPC api.   
 
 ## SSE-RPC
 This simple SSE-RPC service is easy to use.    
   - A DB-Donor simply needs to implement the SSE-RPC API    
   - Any client that implements the required client-code (see ./dbClient.js), can access any Donor-DB
-  - By design, any donor-db can support multiple clients.     
+  - By design, any donor-db can support multiple concurrent clients.     
 
 SEE: https://github.com/nhrones/KvRPC/blob/main/README.md
 
