@@ -47,3 +47,16 @@ Next, click the **Get All** button.
 Now, click the root node \<kv-prefix:\> to expand the tree
 
 ![Alt text](exspand.png)
+
+## The example dataset:
+```ts
+   await db.set(["env", "host"], "http://localhost")
+   await db.set(["env", "port"], 9099)
+   await db.set(["cfg", "target"], "./dist")
+   await db.set(["cfg", "include"], "./src")
+   await db.set(["cfg", "options"], { debug: true, useKv: true, dbFile: "./data/db.db" })
+   await db.set(["users", 1], { id: 1, first: "John", last: "Doe", age: 25, address: { street: '123 Main st.', city: 'Gotham', state: "CA", zip: 45927 } })
+   await db.set(["users", 2], { id: 2, first: "Jim", last: "Smith", age: 35, address: { street: '456 A st.', city: 'Fremont', state: "CA", zip: 45938 } })
+   await db.set(["users", 3], { id: 3, first: "Joe", last: "Smoe", age: 45, address: { street: '789 B st.', city: 'Hayward', state: "CA", zip: 45941 } })
+
+```
