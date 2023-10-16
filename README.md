@@ -16,8 +16,8 @@ You'll find the required SSE-RPC code in the apps ./routes/SSERPC/ folder.
 ![kv-tree](kv-tv.png)
 
 ## Note:
-You can select a remote db from the _From_ dropdown.
-You may also enter any URL that has implemented the minimal SSE-RPC api.   
+You can select a remote db from the **_From_** dropdown.    
+Select **Other**, to allow entering any URL that implements the SSE-RPC api.   
 
 ## SSE-RPC
 This simple SSE-RPC service is easy to use.    
