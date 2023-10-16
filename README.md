@@ -1,15 +1,16 @@
 # KvDb-Remote-Viewer
 This is an example application for examining remote DenoKv data in a TreeView.     
-This app uses a simple SSE-RPC service to fetch all remote-db-rows.    
-KvKeys are then deconstructed for viewing in a DOM Treeview.    
-The **SSE-RPC** api must be implemented in the remote donor app.
+This app uses a simple SSE-RPC service to fetch all remote data rows.    
 
-This example defaults to a remote Deno **Deploy Example** test donor.    
-DB-Donor code: https://github.com/nhrones/KvRPC    
+The fetched multipart-Keys are then deconstructed for viewing in a DOM Treeview along with their values.    
+
+This example defaults to a remote Deno **Deploy Example** data-donor.     
+It is an extremely simple Deploy service that implements the required SSE-RPC APi.   
+Deploy service example code: https://github.com/nhrones/KvRPC    
 
 You may want to try the Deno-Fresh-Deploy implementaion by selecting the **Fresh Example**.    
-DB-Donor code: https://github.com/nhrones/Fresh-SSE-DB       
-You'll find the required SSE-RPC code in the apps ./routes/SSERPC/ folder.   
+Deploy Fresh example code: https://github.com/nhrones/Fresh-SSE-DB       
+You'll find the required SSE-RPC code for Fresh in the **./routes/SSERPC/** folder.   
 
 <br/>
 
