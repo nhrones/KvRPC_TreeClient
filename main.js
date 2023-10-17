@@ -19,8 +19,7 @@ document.getElementById('getbtn').addEventListener('click', () => {
    const DBServiceURL = url.value
    tree.innerHTML = ''
    const thisDB = new DbClient(DBServiceURL)
-   console.log(DBServiceURL)
-
+ 
    // Initialize our KvRPC SSE client
    thisDB.init().then((_result) => {
       thisDB.fetchQuerySet().then((data) => {

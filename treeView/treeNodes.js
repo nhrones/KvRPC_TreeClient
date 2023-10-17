@@ -11,7 +11,6 @@ export function getTreeObj(nodes) {
    for (let index = 0; index < nodes.length; index++) {
       processNode(to, nodes[index])
    }
-   console.info(to)
    return to;
 }
 
@@ -66,5 +65,5 @@ function processNode(to, node) {
             ? to.kv[`${k[0]}`][`${k[1]}`][`${k[2]}`][`${k[3]}`][`${k[4]}`][`${k[5]}`] 
             : (length === 6) ? v : {}
    }
-
+   to.fullKey = node[0]
 }

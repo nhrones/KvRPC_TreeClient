@@ -22,13 +22,13 @@ export function create(kvData) {
 function createNode(opt = {}) {
    let value = opt['value'] ?? null;
    if (isEmptyObject(value)) value = "{ }"; 
-   //console.info(`createNode type: ${opt.type} value: ${value}`)
+   //console.info(`createNode type: ${opt.type} value: ${value} depth: ${opt.depth}`)
    if (opt.type === 'string') value = `"${value}"`
    return {
       key: opt.key || null,
       parent: opt.parent || null,
       value: value,
-      isExpanded: opt.isExpanded || true,
+      isExpanded: opt.isExpanded || false,
       type: opt.type || null,
       children: opt.children || [],
       el: opt.el || null,

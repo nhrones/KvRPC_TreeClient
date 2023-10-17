@@ -1,6 +1,7 @@
 
 import { Classes, collapsedTemplate, expandedTemplate } from './templates.js'
 
+let root = ''
 /**
  * Render the tree into DOM container
  * @param {object} tree
@@ -16,6 +17,7 @@ export function render(tree, targetElement) {
    });
 
    targetElement.appendChild(containerEl);
+   toggleNode(root) //HACK
 }
 
 function hideNodeChildren(node) {
@@ -60,8 +62,11 @@ function setCaretIconRight(node) {
  * @return html element
  */
 function createNodeElement(node) {
+
+   if (node.parent === null)  root = node;
+
    const el = document.createElement('div');
-   // a leaf node?
+   
    if (node.children.length > 0) {
       el.innerHTML = expandedTemplate({
          key: node.key,
@@ -71,7 +76,8 @@ function createNodeElement(node) {
       const caretEl = el.querySelector('.' + Classes.CARET_ICON);
       caretEl.addEventListener('click', () => toggleNode(node));
       node.dispose = caretEl.removeEventListener('click', () => toggleNode(node));
-   } else { // (has children -- not a leaf
+
+   } else { 
       el.innerHTML = collapsedTemplate({
          key: node.key,
          value: node.value,
@@ -84,9 +90,10 @@ function createNodeElement(node) {
    const lineEl = el.children[0];
 
    // start the tree collapsed
-   if (node.parent !== null) {
-      //lineEl.classList.add(Classes.HIDDEN);
+   if (node.parent !== null) { 
+      lineEl.classList.add(Classes.HIDDEN);
    }
+  
 
    lineEl.style = 'margin-left: ' + node.depth * 18 + 'px;';
 
