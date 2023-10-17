@@ -11,12 +11,6 @@ LOCAL_DEV = true
 //  otherwise, run the Deno-Deploy service
 //==========================================
 
-
-// RPC Service url
-// https://kv-rpc.deno.dev/
-
-export const CollectionName = 'users'
-
 let nextMsgID = 0;
 let DBServiceURL = ''
 const transactions = new Map();
@@ -28,7 +22,6 @@ export class DbClient {
 
    querySet = []
 
-   // DB ctor
    constructor(serviceURL) {
       //fix url ending
       DBServiceURL = (serviceURL.endsWith('/'))
@@ -81,11 +74,11 @@ See: readme.md.`)
          */
          eventSource.addEventListener("message", (evt) => {
             const parsed = JSON.parse(evt.data);
-            const { txID, error, result } = parsed;               // unpack
-            if (!transactions.has(txID)) return              // check        
-            const transaction = transactions.get(txID)       // fetch
-            transactions.delete(txID)                        // clean up
-            if (transaction) transaction(error, result)           // execute
+            const { txID, error, result } = parsed;         // unpack
+            if (!transactions.has(txID)) return             // check        
+            const transaction = transactions.get(txID)      // fetch
+            transactions.delete(txID)                       // clean up
+            if (transaction) transaction(error, result)     // execute
          })
       })
    }
@@ -127,8 +120,7 @@ See: readme.md.`)
          // persist single record to the service
          Call("SET",
             {
-               collection: CollectionName,
-               id: key,
+               key: key,
                value: value,
                currentPage: this.currentPage,
                rowsPerPage: this.rowsPerPage
@@ -148,7 +140,7 @@ See: readme.md.`)
     */
    delete(key) {
       try {
-         Call("DELETE", { collection: CollectionName, id: key })
+         Call("DELETE", { key: key })
             .then((result) => {
                this.querySet = result.querySet
                this.totalPages = result.totalPages
