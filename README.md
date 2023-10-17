@@ -17,7 +17,7 @@ You'll find the required SSE-RPC code for Fresh in the **./routes/SSERPC/** fold
 ![kv-tree](kv-tv.png)
 
 ## Note:
-You can select a remote db from the **_From_** dropdown.    
+You can select a remote db from the **_Remote-DB-URL_** dropdown.    
 Select **Other**, to allow entering any URL that implements the SSE-RPC api.   
 
 ## SSE-RPC
