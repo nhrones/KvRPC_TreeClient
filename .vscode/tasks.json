@@ -3,6 +3,11 @@
 	"tasks": [
       {
          "type": "shell",
+         "command": "testdb",
+         "label": "RUN TEST SERVER"
+      },
+      {
+         "type": "shell",
          "command": "serve",
          "label": "RUN CLIENT"
       }

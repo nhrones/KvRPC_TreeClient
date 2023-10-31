@@ -1,4 +1,4 @@
-
+import { rawData } from "../main.js";
 import { Classes, collapsedTemplate, expandedTemplate } from './templates.js'
 
 let root = ''
@@ -17,7 +17,8 @@ export function render(tree, targetElement) {
    });
 
    targetElement.appendChild(containerEl);
-   toggleNode(root) //HACK
+   // expand root node
+   toggleNode(root)
 }
 
 function hideNodeChildren(node) {
@@ -86,6 +87,18 @@ function createNodeElement(node) {
             : typeof node.value
       })
    }
+
+   const keyEl = el.querySelector('.json-key');
+   keyEl.addEventListener('click', (evt) => {
+      //console.info('clicked node ', node)
+      if(node.value.raw) {
+         document.getElementById('fullkey')
+            .textContent = JSON.stringify(rawData[node.value.raw][0]);
+      } else {
+         document.getElementById('fullkey') .textContent = ""
+      }
+
+   });
 
    const lineEl = el.children[0];
 

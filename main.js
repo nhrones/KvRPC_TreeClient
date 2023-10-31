@@ -1,10 +1,12 @@
 import * as TreeBuilder from './treeView/builder.js'
 import * as TreeView from './treeView/renderer.js'
-import { getTreeObj } from './treeView/treeNodes.js'
+import { createTreeObjects } from './treeView/treeNodes.js'
 import { DbClient } from './dbClient.js'
 
 const urls = document.getElementById('urls')
 const url = document.getElementById('url')
+export let rawData = ''
+
 
 urls.addEventListener('change', () => {
    url.value = urls.value
@@ -19,12 +21,18 @@ document.getElementById('getbtn').addEventListener('click', () => {
    const DBServiceURL = url.value
    tree.innerHTML = ''
    const thisDB = new DbClient(DBServiceURL)
- 
+
    // Initialize our KvRPC SSE client
    thisDB.init().then((_result) => {
+      let fetchStart = performance.now()
       thisDB.fetchQuerySet().then((data) => {
-         const to = getTreeObj(data)
-         const treeNodes = TreeBuilder.create(to.kv);
+         rawData = data
+         console.log(`RPC fetch from url: ${url.value} took ${performance.now() - fetchStart}`)
+         //console.log('rawData ', JSON.stringify(rawData))
+         const treeObjects = createTreeObjects(rawData)
+         //console.log('treeObjects ', JSON.stringify(treeObjects))
+         const treeNodes = TreeBuilder.create(treeObjects.kv);
+         //console.log(treeNodes)
          TreeView.render(treeNodes, tree);
       })
    })

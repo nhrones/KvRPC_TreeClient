@@ -22,7 +22,7 @@ export function create(kvData) {
 function createNode(opt = {}) {
    let value = opt['value'] ?? null;
    if (isEmptyObject(value)) value = "{ }"; 
-   //console.info(`createNode type: ${opt.type} value: ${value} depth: ${opt.depth}`)
+   //console.info(`createNode type: ${opt.type} value: ${value} depth: ${opt.depth} fullKey ${opt.fullKey}`)
    if (opt.type === 'string') value = `"${value}"`
    return {
       key: opt.key || null,
@@ -31,7 +31,7 @@ function createNode(opt = {}) {
       isExpanded: opt.isExpanded || false,
       type: opt.type || null,
       children: opt.children || [],
-      el: opt.el || null,
+      //el: opt.el || null,
       depth: opt.depth || 0,
       dispose: null
    }
@@ -60,7 +60,7 @@ function createSubnode(data, node) {
 }
 
 /** 
- * Get a values data type 
+ * Get the data-type of the value 
  */
 function getDataType(value) {
    if (Array.isArray(value)) return 'array';

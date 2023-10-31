@@ -1,9 +1,4 @@
 
-import * as TreeBuilder from './treeView/builder.js'
-import * as TreeView from './treeView/renderer.js'
-import { getTreeObj } from './treeView/treeNodes.js'
-
-
 let LOCAL_DEV = false
 //==========================================
 //  uncomment below to run a local service
@@ -32,7 +27,7 @@ export class DbClient {
    async init() {
       return new Promise((resolve, reject) => {
          let connectAttemps = 0
-         console.log("CONNECTING");
+         //console.log("CONNECTING");
          
          const eventSource = new EventSource(DBServiceURL + "SSERPC/sseRegistration");
 
@@ -87,7 +82,6 @@ See: readme.md.`)
     * fetch a querySet      
     */
    async fetchQuerySet() {
-      console.log('fetching')
       return new Promise((resolve, reject) => {
       Call("GETALL", {})
          .then((result) => {
@@ -168,7 +162,7 @@ export const Call = (procedure, params) => {
 
    const txID = nextMsgID++;
 
-   console.log(`RPC msg ${txID} called ${procedure} with ${JSON.stringify(params)}`);
+   //console.log(`RPC msg ${txID} called ${procedure} with ${JSON.stringify(params)}`);
 
    return new Promise((resolve, reject) => {
       transactions.set(txID, (error, result) => {
