@@ -27,7 +27,7 @@ document.getElementById('getbtn').addEventListener('click', () => {
       let fetchStart = performance.now()
       thisDB.fetchQuerySet().then((data) => {
          rawData = data
-         console.log(`RPC fetch from url: ${url.value} took ${performance.now() - fetchStart}`)
+         console.log(`RPC fetch from url: ${url.value} took ${(performance.now() - fetchStart).toFixed(1)}ms`)
          //console.log('rawData ', JSON.stringify(rawData))
          const treeObjects = createTreeObjects(rawData)
          //console.log('treeObjects ', JSON.stringify(treeObjects))
