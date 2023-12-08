@@ -170,7 +170,7 @@ export const Call = (procedure, params) => {
             return reject(new Error(error));
          resolve(result);
       });
-      fetch(DBServiceURL+'SSERPC/rpcRequests', {
+      fetch(DBServiceURL+'SSERPC/kvRequest', {
          method: "POST",
          mode: 'no-cors',
          body: JSON.stringify({ txID, procedure, params })
