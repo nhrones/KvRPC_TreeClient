@@ -172,7 +172,7 @@ export const Call = (procedure, params) => {
       });
       fetch(DBServiceURL+'SSERPC/rpcRequests', {
          method: "POST",
-         mode: 'cors',
+         mode: 'no-cors',
          body: JSON.stringify({ txID, procedure, params })
       });
    });
