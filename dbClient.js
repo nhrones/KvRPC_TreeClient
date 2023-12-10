@@ -29,7 +29,7 @@ export class DbClient {
          let connectAttemps = 0
          //console.log("CONNECTING");
          
-         const eventSource = new EventSource(DBServiceURL + "SSERPC/sseRegistration");
+         const eventSource = new EventSource(DBServiceURL + "SSERPC/kvRegistration");
 
          eventSource.addEventListener("open", () => {
             console.log("CONNECTED");
