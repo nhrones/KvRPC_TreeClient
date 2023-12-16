@@ -144,7 +144,16 @@ See: readme.md.`)
          return { Error: _e }
       }
    }
-
+   /** 
+    * The `clearAll` method removes all records from the DB. 
+    */
+   async clearAll() {
+      try {
+         await Call("CLEARALL", { key: [""] })
+      } catch (_e) {
+         return { Error: _e }
+      }
+   }
 } // End class
 
 /** 
