@@ -4,13 +4,13 @@ This app uses a simple SSE-RPC service to fetch all remote data rows.
 
 The fetched multipart-Keys are then deconstructed for viewing in a DOM Treeview along with their values.    
 
-This example defaults to a remote Deno **Deploy Example** data-donor.     
+This example defaults to a remote Deno **Deploy Example** data-service.     
 It is an extremely simple Deploy service that implements the required SSE-RPC APi.   
-Deploy service example code: https://github.com/nhrones/KvRPC    
+Deploy service example code: https://github.com/nhrones/BuenoRPC    
 
 You may want to try the Deno-Fresh-Deploy implementaion by selecting the **Fresh Example**.    
 Deploy Fresh example code: https://github.com/nhrones/Fresh-SSE-DB       
-You'll find the required SSE-RPC code for Fresh in the **./routes/SSERPC/** folder.   
+  
 
 <br/>
 
