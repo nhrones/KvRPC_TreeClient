@@ -1,4 +1,7 @@
+
+/// <reference lib="dom" />
 // deno-lint-ignore-file no-explicit-any
+
 import * as TreeBuilder from './treeView/builder.ts'
 import * as TreeView from './treeView/renderer.ts'
 import { createTreeObjects } from './treeView/treeNodes.ts'
@@ -24,7 +27,7 @@ getButton.addEventListener('click', () => {
    const thisDB = new DbClient(DBServiceURL)
 
    // Initialize our KvRPC SSE client
-   thisDB.init().then((_result) => {
+   thisDB.init("SSERPC/kvRegistration").then((_result) => {
       const fetchStart = performance.now()
       //thisDB.clearAll().then(() => {
          thisDB.fetchQuerySet().then((data: any) => {

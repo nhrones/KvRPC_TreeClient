@@ -258,11 +258,11 @@ var DbClient = class {
     DBServiceURL = serviceURL.endsWith("/") ? serviceURL : serviceURL += "/";
   }
   /** initialize our EventSource and fetch some data */
-  init() {
+  init(registrationURL) {
     return new Promise((resolve, reject) => {
       let connectAttemps = 0;
       console.log("CONNECTING");
-      const eventSource = new EventSource(DBServiceURL + "SSERPC/kvRegistration");
+      const eventSource = new EventSource(DBServiceURL + registrationURL);
       eventSource.addEventListener("open", () => {
         console.log("CONNECTED");
         resolve();
@@ -409,7 +409,7 @@ getButton.addEventListener("click", () => {
   const DBServiceURL2 = url.value;
   treeView.innerHTML = "";
   const thisDB = new DbClient(DBServiceURL2);
-  thisDB.init().then((_result) => {
+  thisDB.init("SSERPC/kvRegistration").then((_result) => {
     const fetchStart = performance.now();
     thisDB.fetchQuerySet().then((data) => {
       rawData = data;
