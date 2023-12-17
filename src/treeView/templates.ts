@@ -1,6 +1,7 @@
 
 /** returns a collapsed tree element */
 export function collapsedTemplate(params = {}) {
+   //@ts-ignore ?
    const { key, value, type } = params;
    return `
      <div class="line">
@@ -14,6 +15,7 @@ export function collapsedTemplate(params = {}) {
 
 /** returns a expanded tree element  */
 export function expandedTemplate(params = {}) {
+   //@ts-ignore ?
    const { key, size } = params;
    return `
      <div class="line">

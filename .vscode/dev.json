@@ -2,5 +2,13 @@
    "simple": {
       "TargetFolder": "",
       "Port": 8081
+   },
+   "build": {
+      "Out": "dist",
+      "FileName": "bundle.js",
+      "Entry": [
+         "./src/main.ts"
+      ],
+      "Minify": false
    }
 }

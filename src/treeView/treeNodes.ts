@@ -1,10 +1,11 @@
+// deno-lint-ignore-file no-explicit-any
 
 /**
  * Build a set of treeNode objects
  * @param {*} nodes 
  * @returns an object tree
  */
-export function createTreeObjects(nodes) {
+export function createTreeObjects(nodes: any) {
    const t = { kv: {} }
    for (let i = 0; i < nodes.length; i++) {
       processNode(t, i, nodes[i])
@@ -19,7 +20,7 @@ export function createTreeObjects(nodes) {
  * @param t - an object to add this element to
  * @param node - the node to be processed -- a tuple of [k,v]
  */
-function processNode(t, i, node) {
+function processNode(t: any, _i: any, node: any) {
 
    const k = node[0]    // multipart-key-array
    const v = node[1]    // valid kvValue

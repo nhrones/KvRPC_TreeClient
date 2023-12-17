@@ -8,6 +8,11 @@
       },
       {
          "type": "shell",
+         "command": "build",
+         "label": "BUILD"
+      },
+      {
+         "type": "shell",
          "command": "serve",
          "label": "RUN CLIENT"
       }

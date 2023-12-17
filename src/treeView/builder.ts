@@ -1,10 +1,11 @@
+// deno-lint-ignore-file no-explicit-any
 
 /**
  * Create the Tree object with children
  * @param {object | string} kvData 
  * @return {object} a root node object with children
  */
-export function create(kvData) {
+export function create(kvData:object | string) {
    const rootNode = createNode({
       value: kvData,
       key: 'Key-Prefix',
@@ -19,10 +20,12 @@ export function create(kvData) {
  * @param {object} opt options
  * @return {object} a tree object
  */
-function createNode(opt = {}) {
+function createNode(opt: any = {}) {
+   //@ts-ignore ?
    let value = opt['value'] ?? null;
    if (isEmptyObject(value)) value = "{ }"; 
    //console.info(`createNode type: ${opt.type} value: ${value} depth: ${opt.depth} fullKey ${opt.fullKey}`)
+   
    if (opt.type === 'string') value = `"${value}"`
    return {
       key: opt.key || null,
@@ -42,7 +45,7 @@ function createNode(opt = {}) {
  * @param {object} data
  * @param {object} node
  */
-function createSubnode(data, node) {
+function createSubnode(data: any, node: any) {
    if (typeof data === 'object') {
       for (const key in data) {
          const child = createNode({
@@ -62,7 +65,7 @@ function createSubnode(data, node) {
 /** 
  * Get the data-type of the value 
  */
-function getDataType(value) {
+function getDataType(value: any) {
    if (Array.isArray(value)) return 'array';
    if (value === null) return 'null';
    return typeof value;
@@ -71,7 +74,7 @@ function getDataType(value) {
  /** 
   * tests for an empty object 
   */
- const isEmptyObject = (value) => {
+ const isEmptyObject = (value: any) => {
    return (
       getDataType(value) === 'object' &&
       Object.keys(value).length === 0

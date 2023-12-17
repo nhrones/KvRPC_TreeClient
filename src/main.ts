@@ -1,32 +1,33 @@
-import * as TreeBuilder from './treeView/builder.js'
-import * as TreeView from './treeView/renderer.js'
-import { createTreeObjects } from './treeView/treeNodes.js'
-import { DbClient } from './dbClient.js'
-
-const urls = document.getElementById('urls')
-const url = document.getElementById('url')
+// deno-lint-ignore-file no-explicit-any
+import * as TreeBuilder from './treeView/builder.ts'
+import * as TreeView from './treeView/renderer.ts'
+import { createTreeObjects } from './treeView/treeNodes.ts'
+import { DbClient } from './deps.ts' //'./dbClient.ts'
+const urls = document.getElementById('urls') as HTMLSelectElement
+const url = document.getElementById('url') as HTMLInputElement
 export let rawData = ''
-
+const getButton = document.getElementById('getbtn') as HTMLButtonElement
+const treeView = document.getElementById('tree') as HTMLDivElement
 
 urls.addEventListener('change', () => {
    url.value = urls.value
-   tree.innerHTML = ''
+   treeView.innerHTML = ''
 })
 
 // when the getBtn is clicked, we first clear the treeView 
 // then we fetch a fresh dataSet from the url
-document.getElementById('getbtn').addEventListener('click', () => {
+getButton.addEventListener('click', () => {
    // clear the tree
    const tree = document.getElementById('tree')
    const DBServiceURL = url.value
-   tree.innerHTML = ''
+   treeView.innerHTML = ''
    const thisDB = new DbClient(DBServiceURL)
 
    // Initialize our KvRPC SSE client
    thisDB.init().then((_result) => {
       const fetchStart = performance.now()
       //thisDB.clearAll().then(() => {
-         thisDB.fetchQuerySet().then((data) => {
+         thisDB.fetchQuerySet().then((data: any) => {
             rawData = data
             console.log(`RPC fetch from url: ${url.value} took ${(performance.now() - fetchStart).toFixed(1)}ms`)
             //console.log('rawData ', JSON.stringify(rawData))
