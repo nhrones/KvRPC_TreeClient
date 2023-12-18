@@ -29,17 +29,12 @@ getButton.addEventListener('click', () => {
    // Initialize our KvRPC SSE client
    thisDB.init().then((_result) => {
       const fetchStart = performance.now()
-      //thisDB.clearAll().then(() => {
-         thisDB.fetchQuerySet().then((data: any) => {
-            rawData = data
-            console.log(`RPC fetch from url: ${url.value} took ${(performance.now() - fetchStart).toFixed(1)}ms`)
-            //console.log('rawData ', JSON.stringify(rawData))
-            const treeObjects = createTreeObjects(rawData)
-            //console.log('treeObjects ', JSON.stringify(treeObjects))
-            const treeNodes = TreeBuilder.create(treeObjects.kv);
-            //console.log(treeNodes)
-            TreeView.render(treeNodes, tree);
-         })
-      //})
+      thisDB.fetchQuerySet().then((data: any) => {
+         rawData = data
+         console.log(`RPC fetch from url: ${url.value} took ${(performance.now() - fetchStart).toFixed(1)}ms`)
+         const treeObjects = createTreeObjects(rawData)
+         const treeNodes = TreeBuilder.create(treeObjects.kv);
+         TreeView.render(treeNodes, tree);
+      })
    })
 })
