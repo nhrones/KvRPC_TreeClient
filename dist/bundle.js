@@ -247,22 +247,42 @@ function processNode(t, _i, node2) {
 }
 __name(processNode, "processNode");
 
+// https://raw.githubusercontent.com/nhrones/BuenoRPC-Client/main/context.ts
+var CTX = {
+  DEBUG: false,
+  DBServiceURL: "",
+  registrationURL: "",
+  requestURL: ""
+};
+
 // https://raw.githubusercontent.com/nhrones/BuenoRPC-Client/main/dbClient.ts
-var DEBUG = false;
+var { DBServiceURL, DEBUG, registrationURL, requestURL } = CTX;
 var nextMsgID = 0;
-var DBServiceURL = "";
 var transactions = /* @__PURE__ */ new Map();
 var DbClient = class {
-  constructor(serviceURL) {
+  constructor(serviceURL, serviceType) {
     this.querySet = [];
     DBServiceURL = serviceURL.endsWith("/") ? serviceURL : serviceURL += "/";
+    switch (serviceType) {
+      case "IO":
+        registrationURL = DBServiceURL + "SSERPC/ioRegistration", requestURL = DBServiceURL + "SSERPC/ioRequest";
+        break;
+      case "KV":
+        registrationURL = DBServiceURL + "SSERPC/kvRegistration", requestURL = DBServiceURL + "SSERPC/kvRequest";
+        break;
+      case "RELAY":
+        registrationURL = DBServiceURL + "SSERPC/relayRegistration", requestURL = DBServiceURL + "SSERPC/relayRequest";
+        break;
+      default:
+        break;
+    }
   }
   /** initialize our EventSource and fetch some data */
-  init(registrationURL) {
+  init() {
     return new Promise((resolve, reject) => {
       let connectAttemps = 0;
       console.log("CONNECTING");
-      const eventSource = new EventSource(DBServiceURL + registrationURL);
+      const eventSource = new EventSource(registrationURL);
       eventSource.addEventListener("open", () => {
         console.log("CONNECTED");
         resolve();
@@ -386,7 +406,7 @@ var rpcRequest = /* @__PURE__ */ __name((procedure, params) => {
         return reject(new Error(error));
       resolve(result);
     });
-    fetch(DBServiceURL + "SSERPC/kvRequest", {
+    fetch(requestURL, {
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify({ txID, procedure, params })
@@ -408,8 +428,8 @@ getButton.addEventListener("click", () => {
   const tree = document.getElementById("tree");
   const DBServiceURL2 = url.value;
   treeView.innerHTML = "";
-  const thisDB = new DbClient(DBServiceURL2);
-  thisDB.init("SSERPC/kvRegistration").then((_result) => {
+  const thisDB = new DbClient(DBServiceURL2, "KV");
+  thisDB.init().then((_result) => {
     const fetchStart = performance.now();
     thisDB.fetchQuerySet().then((data) => {
       rawData = data;

@@ -24,10 +24,10 @@ getButton.addEventListener('click', () => {
    const tree = document.getElementById('tree')
    const DBServiceURL = url.value
    treeView.innerHTML = ''
-   const thisDB = new DbClient(DBServiceURL)
+   const thisDB = new DbClient(DBServiceURL, "KV")
 
    // Initialize our KvRPC SSE client
-   thisDB.init("SSERPC/kvRegistration").then((_result) => {
+   thisDB.init().then((_result) => {
       const fetchStart = performance.now()
       //thisDB.clearAll().then(() => {
          thisDB.fetchQuerySet().then((data: any) => {
