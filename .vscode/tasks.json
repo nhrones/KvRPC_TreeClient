@@ -3,7 +3,7 @@
 	"tasks": [
       {
          "type": "shell",
-         "command": "testdb",
+         "command": "rpc",
          "label": "RUN TEST SERVER"
       },
       {
