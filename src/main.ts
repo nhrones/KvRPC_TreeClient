@@ -25,7 +25,7 @@ getButton.addEventListener('click', () => {
    const tree = document.getElementById('tree')
    const DBServiceURL = url.value
    treeView.innerHTML = ''
-   const thisDB = new DbClient(DBServiceURL, "KV")
+   const thisDB = new DbClient(DBServiceURL, "KV", "treeView")
 
    // Initialize our KvRPC SSE client
    thisDB.init().then((_result) => {

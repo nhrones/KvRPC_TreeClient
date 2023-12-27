@@ -257,37 +257,44 @@ var CTX = {
 
 // https://raw.githubusercontent.com/nhrones/BuenoRPC-Client/main/dbClient.ts
 var { DBServiceURL, DEBUG, registrationURL, requestURL } = CTX;
-var nextMsgID = 0;
+var nextTxID = 0;
 var transactions = /* @__PURE__ */ new Map();
 var DbClient = class {
-  constructor(serviceURL, serviceType) {
+  /**
+   * Creates a new DBClient instance
+   * @param serviceURL - the url for the RPC service
+   * @param serviceType - the type of service to register for
+   */
+  constructor(serviceURL, serviceType, client = "unknown") {
     this.querySet = [];
     DBServiceURL = serviceURL.endsWith("/") ? serviceURL : serviceURL += "/";
     switch (serviceType) {
       case "IO":
-        registrationURL = DBServiceURL + "SSERPC/ioRegistration", requestURL = DBServiceURL + "SSERPC/ioRequest";
+        registrationURL = DBServiceURL + `SSERPC/ioRegistration?client=${client}`, requestURL = DBServiceURL + "SSERPC/ioRequest";
         break;
       case "KV":
-        registrationURL = DBServiceURL + "SSERPC/kvRegistration", requestURL = DBServiceURL + "SSERPC/kvRequest";
+        registrationURL = DBServiceURL + `SSERPC/kvRegistration?client=${client}`, requestURL = DBServiceURL + "SSERPC/kvRequest";
         break;
       case "RELAY":
-        registrationURL = DBServiceURL + "SSERPC/relayRegistration", requestURL = DBServiceURL + "SSERPC/relayRequest";
+        registrationURL = DBServiceURL + `SSERPC/relayRegistration?client=${client}`, requestURL = DBServiceURL + "SSERPC/relayRequest";
         break;
       default:
         break;
     }
   }
-  /** initialize our EventSource and fetch some data */
+  /** 
+   * initialize our EventSource and fetch initial data 
+   * */
   init() {
     return new Promise((resolve, reject) => {
       let connectAttemps = 0;
       console.log("CONNECTING");
       const eventSource = new EventSource(registrationURL);
-      eventSource.addEventListener("open", () => {
+      eventSource.onopen = () => {
         console.log("CONNECTED");
         resolve();
-      });
-      eventSource.addEventListener("error", (_e) => {
+      };
+      eventSource.onerror = (_e) => {
         switch (eventSource.readyState) {
           case EventSource.OPEN:
             console.log("CONNECTED");
@@ -308,7 +315,7 @@ See: readme.md.`);
             reject();
             break;
         }
-      });
+      };
       eventSource.onmessage = (evt) => {
         if (DEBUG)
           console.info("events.onmessage - ", evt.data);
@@ -399,9 +406,9 @@ See: readme.md.`);
 };
 __name(DbClient, "DbClient");
 var rpcRequest = /* @__PURE__ */ __name((procedure, params) => {
-  const txID = nextMsgID++;
+  const thisID = nextTxID++;
   return new Promise((resolve, reject) => {
-    transactions.set(txID, (error, result) => {
+    transactions.set(thisID, (error, result) => {
       if (error)
         return reject(new Error(error));
       resolve(result);
@@ -409,7 +416,7 @@ var rpcRequest = /* @__PURE__ */ __name((procedure, params) => {
     fetch(requestURL, {
       method: "POST",
       mode: "no-cors",
-      body: JSON.stringify({ txID, procedure, params })
+      body: JSON.stringify({ txID: thisID, procedure, params })
     });
   });
 }, "rpcRequest");
@@ -428,7 +435,7 @@ getButton.addEventListener("click", () => {
   const tree = document.getElementById("tree");
   const DBServiceURL2 = url.value;
   treeView.innerHTML = "";
-  const thisDB = new DbClient(DBServiceURL2, "KV");
+  const thisDB = new DbClient(DBServiceURL2, "KV", "treeView");
   thisDB.init().then((_result) => {
     const fetchStart = performance.now();
     thisDB.fetchQuerySet().then((data) => {
