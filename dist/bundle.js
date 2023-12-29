@@ -163,11 +163,7 @@ function createNodeElement(node2) {
   }
   const keyEl = el.querySelector(".json-key");
   keyEl.addEventListener("click", () => {
-    if (node2.value.raw) {
-      document.getElementById("fullkey").textContent = JSON.stringify(rawData[node2.value.raw][0]);
-    } else {
-      document.getElementById("fullkey").textContent = "";
-    }
+    console.info("clicked node ", node2);
   });
   const lineEl = el.children[0];
   if (node2.parent !== null) {
@@ -344,15 +340,33 @@ See: readme.md.`);
       });
     });
   }
+  // /**
+  //  * get row from key
+  //  */
+  // get(key: string) {
+  //    for (let index = 0; index < this.querySet.length; index++) {
+  //       const element = this.querySet[index];
+  //       //@ts-ignore ?
+  //       if (element.id === key) return element
+  //    }
+  // }
   /**
    * get row from key
    */
   get(key) {
-    for (let index = 0; index < this.querySet.length; index++) {
-      const element = this.querySet[index];
-      if (element.id === key)
-        return element;
-    }
+    const start = performance.now();
+    console.info(`Get called with key = `, key);
+    return new Promise((resolve, _reject) => {
+      rpcRequest("GET", { key }).then((result) => {
+        console.info("GET result ", result);
+        console.info(`GET call returned ${result} in ${performance.now() - start}`);
+        if (typeof result.value === "string") {
+          resolve(result.value);
+        } else {
+          resolve(JSON.stringify(result.value));
+        }
+      });
+    });
   }
   /** 
    * The `set` method mutates - will call the `persist` method. 

@@ -91,14 +91,7 @@ function createNodeElement(node: any) {
 
    const keyEl = el.querySelector('.json-key') as HTMLElement;
    keyEl.addEventListener('click', () => {
-      //console.info('clicked node ', node)
-      if(node.value.raw) {
-         (document.getElementById('fullkey') as HTMLElement)
-            .textContent = JSON.stringify(rawData[node.value.raw][0]);
-      } else {
-         (document.getElementById('fullkey') as HTMLElement).textContent = ""
-      }
-
+      console.info('clicked node ', node)
    });
 
    const lineEl = el.children[0] as HTMLElement;
